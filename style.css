@@ -1,0 +1,198 @@
+#corridor {
+    z-index: 1;
+}
+#corridor .cell {
+    width: 100px;
+    height: 100px;
+    stroke-width: 1px;
+    stroke: rgba(0, 0, 0, 1);
+    fill: white;
+    display: block;
+    transform: translateY(100px);
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes cell0 {
+    from {
+        transform: translateX(100px);
+        stroke: rgba(0, 0, 0, 1);
+    }
+    to {
+        transform: translateX(0px);
+        stroke: rgba(0, 0, 0, 0);
+    }
+}
+#corridor .cell:nth-child(1) {
+    animation-name: cell0;
+    transform: translateX(0);
+    stroke: rgba(0, 0, 0, 0);
+}
+
+@keyframes cell1 {
+    from {
+        transform: translateX(200px);
+    }
+    to {
+        transform: translateX(100px);
+    }
+}
+#corridor .cell:nth-child(2) {
+    animation-name: cell1;
+    transform: translateX(100px);
+}
+
+@keyframes cell2 {
+    from {
+        transform: translateX(300px);
+    }
+    to {
+        transform: translateX(200px);
+    }
+}
+#corridor .cell:nth-child(3) {
+    animation-name: cell2;
+    transform: translateX(200px);
+}
+
+@keyframes cell3 {
+    from {
+        transform: translateX(400px);
+    }
+    to {
+        transform: translateX(300px);
+    }
+}
+#corridor .cell:nth-child(4) {
+    animation-name: cell3;
+    transform: translateX(300px);
+}
+
+@keyframes cell4 {
+    from {
+        transform: translateX(500px);
+    }
+    to {
+        transform: translateX(400px);
+    }
+}
+#corridor .cell:nth-child(5) {
+    animation-name: cell4;
+    transform: translateX(400px);
+}
+
+@keyframes cell5 {
+    from {
+        transform: translateX(600px);
+    }
+    to {
+        transform: translateX(500px);
+    }
+}
+#corridor .cell:nth-child(6) {
+    animation-name: cell5;
+    transform: translateX(500px);
+}
+
+@keyframes cell6 {
+    from {
+        transform: translateX(700px);
+    }
+    to {
+        transform: translateX(600px);
+    }
+}
+#corridor .cell:nth-child(7) {
+    animation-name: cell6;
+    transform: translateX(600px);
+}
+
+@keyframes cell7 {
+    from {
+        transform: translateX(800px);
+    }
+    to {
+        transform: translateX(700px);
+    }
+}
+#corridor .cell:nth-child(8) {
+    animation-name: cell7;
+    transform: translateX(700px);
+}
+
+@keyframes cell8 {
+    from {
+        transform: translateX(900px);
+    }
+    to {
+        transform: translateX(800px);
+    }
+}
+#corridor .cell:nth-child(9) {
+    animation-name: cell8;
+    transform: translateX(800px);
+}
+
+@keyframes cell9 {
+    from {
+        transform: translateX(1000px);
+    }
+    to {
+        transform: translateX(900px);
+    }
+}
+#corridor .cell:nth-child(10) {
+    animation-name: cell9;
+    transform: translateX(900px);
+}
+
+@keyframes cell10 {
+    from {
+        transform: translateX(1100px);
+        stroke: rgba(0, 0, 0, 0);
+    }
+    to {
+        transform: translateX(1000px);
+        stroke: rgba(0, 0, 0, 1);
+    }
+}
+#corridor .cell:nth-child(11) {
+    animation-name: cell10;
+    transform: translateX(1000px);
+}
+
+#beatindicator.beatoff {
+    fill: red;
+}
+#beatindicator.beaton {
+    fill: green;
+}
+
+#player {
+    z-index: 2;
+    transform: translate(240px, 50px);
+    animation-duration: 0.2s;
+}
+#player .body {
+    width: 30px;
+    height: 50px;
+    fill: slategrey;
+}
+
+
+@keyframes jump {
+    from {
+        transform: translate(240px, 50px);
+    }
+    50% {
+        transform: translate(240px, 0px);
+    }
+    to {
+        transform: translate(240px, 50px);
+    }
+}
+#player.jumping {
+    animation-name: jump;
+    animation-timing-function: ease-in-out;
+    transform: translate(240px, 0px);
+}

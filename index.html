@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>To the beat</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <pre id="messages">
 
+    </pre>
+    <svg id="stage" width="1200" height="500">
+        <g id="corridor">
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+            <rect class="cell"></rect>
+        </g>
+        <g>
+          <circle  id="beatindicator" cx="550" cy="150" class="beatoff" r="50"></circle>
+        </g>
+        <g id="player" class="idle">
+            <rect class="body"></rect>
+        </g>
+    </svg>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.9/Tone.js"></script>
+    <script src="main.js" type="module"></script>
 </body>
 </html>
