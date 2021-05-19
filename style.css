@@ -1,16 +1,22 @@
 #corridor {
     z-index: 1;
+    transform: translateX(100px);
 }
-#corridor .cell {
+.cell {
+    width: 100px;
+    height: 100px;
+    transform: translateY(100px);
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+}
+
+.wall {
     width: 100px;
     height: 100px;
     stroke-width: 1px;
     stroke: rgba(0, 0, 0, 1);
     fill: white;
     display: block;
-    transform: translateY(100px);
-    animation-duration: 0.2s;
-    animation-timing-function: ease-out;
 }
 
 @keyframes cell0 {
@@ -23,7 +29,7 @@
         stroke: rgba(0, 0, 0, 0);
     }
 }
-#corridor .cell:nth-child(1) {
+.cell:nth-child(1) {
     animation-name: cell0;
     transform: translateX(0);
     stroke: rgba(0, 0, 0, 0);
@@ -37,7 +43,7 @@
         transform: translateX(100px);
     }
 }
-#corridor .cell:nth-child(2) {
+.cell:nth-child(2) {
     animation-name: cell1;
     transform: translateX(100px);
 }
@@ -50,7 +56,7 @@
         transform: translateX(200px);
     }
 }
-#corridor .cell:nth-child(3) {
+.cell:nth-child(3) {
     animation-name: cell2;
     transform: translateX(200px);
 }
@@ -63,7 +69,7 @@
         transform: translateX(300px);
     }
 }
-#corridor .cell:nth-child(4) {
+.cell:nth-child(4) {
     animation-name: cell3;
     transform: translateX(300px);
 }
@@ -76,7 +82,7 @@
         transform: translateX(400px);
     }
 }
-#corridor .cell:nth-child(5) {
+.cell:nth-child(5) {
     animation-name: cell4;
     transform: translateX(400px);
 }
@@ -89,7 +95,7 @@
         transform: translateX(500px);
     }
 }
-#corridor .cell:nth-child(6) {
+.cell:nth-child(6) {
     animation-name: cell5;
     transform: translateX(500px);
 }
@@ -102,7 +108,7 @@
         transform: translateX(600px);
     }
 }
-#corridor .cell:nth-child(7) {
+.cell:nth-child(7) {
     animation-name: cell6;
     transform: translateX(600px);
 }
@@ -115,7 +121,7 @@
         transform: translateX(700px);
     }
 }
-#corridor .cell:nth-child(8) {
+.cell:nth-child(8) {
     animation-name: cell7;
     transform: translateX(700px);
 }
@@ -128,7 +134,7 @@
         transform: translateX(800px);
     }
 }
-#corridor .cell:nth-child(9) {
+.cell:nth-child(9) {
     animation-name: cell8;
     transform: translateX(800px);
 }
@@ -141,7 +147,7 @@
         transform: translateX(900px);
     }
 }
-#corridor .cell:nth-child(10) {
+.cell:nth-child(10) {
     animation-name: cell9;
     transform: translateX(900px);
 }
@@ -156,7 +162,7 @@
         stroke: rgba(0, 0, 0, 1);
     }
 }
-#corridor .cell:nth-child(11) {
+.cell:nth-child(11) {
     animation-name: cell10;
     transform: translateX(1000px);
 }
@@ -195,4 +201,31 @@
     animation-name: jump;
     animation-timing-function: ease-in-out;
     transform: translate(240px, 0px);
+}
+
+.cell.stairsDown {
+    fill: green;
+}
+
+.blueblob {
+    fill: blue;
+    z-index: 2;
+}
+
+.yellowblob {
+    fill: yellow;
+    z-index: 2;
+}
+
+.purpleblob {
+    fill: purple;
+    z-index: 2;
+}
+
+.mobsafe {
+    stroke: transparent;
+}
+
+.mobunsafe {
+    stroke: red;
 }
