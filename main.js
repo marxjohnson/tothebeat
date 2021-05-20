@@ -26,11 +26,14 @@ function jumpOn() {
 function jumpOff(resolve) {
     player.setAttribute('class', 'idle');
     player.removeEventListener('animationend', jumpOff);
-    resolve();
+    setTimeout(resolve, 0);
 }
 
 function moveForward() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
+        player.addEventListener('animationend', () => {
+            jumpOff(resolve)
+        });
         jumpOn();
         player.addEventListener('animationend', () => {jumpOff(resolve)});
         const firstCell = document.querySelector('#corridor .cell:first-child');
@@ -44,7 +47,10 @@ function moveForward() {
 }
 
 function moveBackward() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
+        player.addEventListener('animationend', () => {
+            jumpOff(resolve)
+        });
         jumpOn();
         player.addEventListener('animationend', () => {jumpOff(resolve)});
         const lastCell = document.querySelector('#corridor .cell:last-child');
