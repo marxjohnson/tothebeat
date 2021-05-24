@@ -96,7 +96,6 @@
     fill: slategrey;
 }
 
-
 @keyframes jump {
     from {
         transform: translate(240px, 50px);
@@ -131,6 +130,10 @@
 .purpleblob {
     fill: purple;
     z-index: 2;
+}
+
+.boss {
+    fill: aqua;
 }
 
 .mob {

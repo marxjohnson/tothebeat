@@ -1,87 +1,31 @@
 import * as roomContents from './roomContents.js';
-export const rooms = [
-    {
-        number: 0,
-        contents: null
-    },
-    {
-        number: 1,
-        contents: null
-    },
-    {
-        number: 2,
-        contents: null
-    },
-    {
-        number: 3,
-        contents: null
-    },
-    {
-        number: 4,
+export const rooms =
+{
+    4: {
         contents: new roomContents.blueBlob()
     },
-    {
-        number: 5,
-        contents: null
-    },
-    {
-        number: 6,
+    6: {
         contents: new roomContents.yellowBlob()
     },
-    {
-        number: 7,
-        contents: null
-    },
-    {
-        number: 8,
-        contents: null
-    },
-    {
-        number: 9,
-        contents: null
-    },
-    {
-        number: 10,
-        contents: null
-    },
-    {
-        number: 11,
+    11: {
         contents: new roomContents.purpleBlob()
     },
-    {
-        number: 12,
-        contents: null
+    16: {
+        contents: new roomContents.yellowBlob()
     },
-    {
-        number: 13,
-        contents: null
+    18: {
+        contents: new roomContents.yellowBlob()
     },
-    {
-        number: 14,
-        contents: null
+    22: {
+        contents: new roomContents.yellowBlob()
     },
-    {
-        number: 15,
-        contents: null
+    26: {
+        contents: new roomContents.purpleBlob()
     },
-    {
-        number: 16,
-        contents: null
+    28: {
+        contents: new roomContents.purpleBlob()
     },
-    {
-        number: 17,
-        contents: null
-    },
-    {
-        number: 18,
-        contents: null
-    },
-    {
-        number: 19,
-        contents: null
-    },
-    {
-        number: 20,
-        contents: null
+    30: {
+        contents: new roomContents.boss()
     }
-]
+};

@@ -59,6 +59,7 @@ export class blueBlob extends mob {
         this.domElement.setAttribute('r', 20);
         this.domElement.setAttribute('cx', 50);
         this.domElement.setAttribute('cy', 80);
+        this.domElement.dataset.object = this;
     }
 }
 
@@ -83,5 +84,17 @@ export class purpleBlob extends mob {
         this.domElement.setAttribute('r', 20);
         this.domElement.setAttribute('cx', 50);
         this.domElement.setAttribute('cy', 80);
+    }
+}
+
+export class boss extends mob {
+    pattern = [this.UNSAFE, this.UNSAFE, this.UNSAFE, this.SAFE, this.UNSAFE, this.UNSAFE, this.SAFE, this.UNSAFE, this.SAFE];
+
+    constructDomElement() {
+        this.domElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        this.domElement.setAttribute('class', 'mob boss');
+        this.domElement.setAttribute('r', 50);
+        this.domElement.setAttribute('cx', 50);
+        this.domElement.setAttribute('cy', 50);
     }
 }

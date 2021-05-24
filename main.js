@@ -35,7 +35,6 @@ function moveForward() {
             jumpOff(resolve)
         });
         jumpOn();
-        player.addEventListener('animationend', () => {jumpOff(resolve)});
         const firstCell = document.querySelector('#corridor .cell:first-child');
         const newCell = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         newCell.classList.add('cell');
@@ -54,7 +53,6 @@ function moveBackward() {
             jumpOff(resolve)
         });
         jumpOn();
-        player.addEventListener('animationend', () => {jumpOff(resolve)});
         const lastCell = document.querySelector('#corridor .cell:last-child');
         const prevRoom = document.querySelector('#corridor .cell:first-child').dataset.room - 1;
         const newCell = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -72,8 +70,8 @@ function setCellContents(cell, roomNumber) {
     wall.classList.add('wall');
     cell.dataset.room = roomNumber;
     cell.appendChild(wall);
-    const contents = rooms[roomNumber].contents;
-    if (contents !== null) {
+    if (rooms.hasOwnProperty(roomNumber)) {
+        const contents = rooms[roomNumber].contents;
         cell.appendChild(contents.getDomElement());
     }
 }
@@ -98,7 +96,7 @@ async function main() {
     });
 
     window.addEventListener('keydown', () => {
-        if (beatNow || true) {
+        if (beatNow) {
             console.log('Hit!');
             moveForward().then(() => {
                 // Did we hit something?
