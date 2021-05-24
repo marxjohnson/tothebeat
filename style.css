@@ -82,10 +82,10 @@
     transition: fill 0.1s ease-in-out;
 }
 
-#beatindicator.beatoff {
+.beatoff #beatindicator {
     fill: red;
 }
-#beatindicator.beaton {
+.beaton #beatindicator {
     fill: green;
 }
 
@@ -141,10 +141,14 @@
 }
 
 .mob {
-    stroke: red;
-    stroke-opacity: 0;
+    stroke: none;
+    transition: transform 0.1s;
 }
 
 .mob.unsafe {
-    stroke-opacity: 1;
+    stroke: red;
+}
+
+.beaton .mob {
+    transform: translate(10px, 20px) scale(.8, .8);
 }

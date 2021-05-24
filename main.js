@@ -7,16 +7,16 @@ let nextRoom = 0;
 messages.innerText = "Press any key to start";
 const beat = new Event('beat');
 const bpm = 126;
-const threshold = 0.02 * (bpm / 60);
+const threshold = 0.03 * (bpm / 60);
 let beatNow = false;
 
 function beatOn() {
     beatNow = true;
-    document.getElementById('beatindicator').setAttribute('class', 'beaton');
+    document.body.setAttribute('class', 'beaton');
 }
 function beatOff() {
     beatNow = false;
-    document.getElementById('beatindicator').setAttribute('class', 'beatoff');
+    document.body.setAttribute('class', 'beatoff');
 }
 
 function jumpOn() {
