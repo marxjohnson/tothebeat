@@ -39,9 +39,11 @@ function moveForward() {
         const firstCell = document.querySelector('#corridor .cell:first-child');
         const newCell = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         newCell.classList.add('cell');
+        newCell.classList.add('end');
         setCellContents(newCell, nextRoom);
         nextRoom++;
         corridor.appendChild(newCell);
+        newCell.classList.remove('end');
         corridor.removeChild(firstCell);
     });
 }
@@ -60,6 +62,7 @@ function moveBackward() {
         setCellContents(newCell, prevRoom);
         nextRoom--;
         corridor.prepend(newCell);
+        lastCell.classList.add('end');
         corridor.removeChild(lastCell);
     });
 }
@@ -95,14 +98,14 @@ async function main() {
     });
 
     window.addEventListener('keydown', () => {
-        if (beatNow) {
+        if (beatNow || true) {
             console.log('Hit!');
             moveForward().then(() => {
                 // Did we hit something?
-                if (document.querySelector('#corridor .cell:nth-child(2) .mobsafe')) {
+                if (document.querySelector('#corridor .cell:nth-child(3) .mobsafe')) {
                     console.log('Killed a mob!');
                 }
-                if (document.querySelector('#corridor .cell:nth-child(2) .mobunsafe')) {
+                if (document.querySelector('#corridor .cell:nth-child(3) .mobunsafe')) {
                     console.log('Hit by a mob!');
                     return moveBackward();
                 }
