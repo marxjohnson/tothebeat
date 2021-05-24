@@ -102,10 +102,12 @@ async function main() {
             console.log('Hit!');
             moveForward().then(() => {
                 // Did we hit something?
-                if (document.querySelector('#corridor .cell:nth-child(3) .mobsafe')) {
+                if (document.querySelector('#corridor .cell:nth-child(3) .mob.safe')) {
+                    const mob = document.querySelector('#corridor .cell:nth-child(3) .mob');
+                    mob.parentElement.removeChild(mob);
                     console.log('Killed a mob!');
                 }
-                if (document.querySelector('#corridor .cell:nth-child(3) .mobunsafe')) {
+                if (document.querySelector('#corridor .cell:nth-child(3) .mob.unsafe')) {
                     console.log('Hit by a mob!');
                     return moveBackward();
                 }

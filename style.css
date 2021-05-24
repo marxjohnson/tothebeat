@@ -73,7 +73,7 @@
     transform: translateX(1000px);
 }
 
-.cell:nth-child(11) * {
+.cell:nth-child(11) *, .cell:nth-child(11) .mob.unsafe {
     stroke-opacity: 0;
     fill-opacity: 0;
 }
@@ -133,10 +133,11 @@
     z-index: 2;
 }
 
-.mobsafe {
-    stroke: transparent;
+.mob {
+    stroke: red;
+    stroke-opacity: 0;
 }
 
-.mobunsafe {
-    stroke: red;
+.mob.unsafe {
+    stroke-opacity: 1;
 }

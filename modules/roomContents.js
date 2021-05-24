@@ -13,8 +13,8 @@ class stairsDown extends roomContents {
 }
 
 class mob extends roomContents {
-    SAFE = 'mobsafe';
-    UNSAFE = 'mobunsafe';
+    SAFE = 'safe';
+    UNSAFE = 'unsafe';
     domElement = null;
     state = this.SAFE;
     counter = 0;
@@ -51,11 +51,11 @@ class mob extends roomContents {
 }
 
 export class blueBlob extends mob {
-    pattern = [this.UNSAFE];
+    pattern = [this.SAFE];
 
     constructDomElement() {
         this.domElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        this.domElement.setAttribute('class', 'blueblob');
+        this.domElement.setAttribute('class', 'mob blueblob');
         this.domElement.setAttribute('r', 20);
         this.domElement.setAttribute('cx', 50);
         this.domElement.setAttribute('cy', 80);
@@ -67,7 +67,7 @@ export class yellowBlob extends mob {
 
     constructDomElement() {
         this.domElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        this.domElement.setAttribute('class', 'yellowblob');
+        this.domElement.setAttribute('class', 'mob yellowblob');
         this.domElement.setAttribute('r', 20);
         this.domElement.setAttribute('cx', 50);
         this.domElement.setAttribute('cy', 80);
@@ -79,7 +79,7 @@ export class purpleBlob extends mob {
 
     constructDomElement() {
         this.domElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        this.domElement.setAttribute('class', 'purpleblob');
+        this.domElement.setAttribute('class', 'mob purpleblob');
         this.domElement.setAttribute('r', 20);
         this.domElement.setAttribute('cx', 50);
         this.domElement.setAttribute('cy', 80);
