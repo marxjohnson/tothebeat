@@ -81,11 +81,21 @@ async function main() {
     await Tone.start();
     console.log('Tone started');
     const synth = new Tone.Synth().toDestination();
+    const sampler = new Tone.Sampler({
+        urls: {
+            A0: "drum-bass-hi-2.mp3",
+            C0: "cymbal-hihat-stick.mp3",
+            D0: "drum-snare-tap.mp3"
+        },
+        baseUrl: './samples/'
+    }).toDestination();
 
-    const loopA = new Tone.Loop(time => {
-        synth.triggerAttackRelease("C4", "8n", time + threshold);
+    const beatLoop = new Tone.Loop(time => {
         window.dispatchEvent(beat);
     }, "4n").start(0);
+    const drumSequence = new Tone.Sequence((time, note) => {
+        sampler.triggerAttackRelease(note, "8n", time + threshold);
+    }, ['A0', 'C0', 'A0', 'D0']).start(0);
     Tone.Transport.set({bpm: bpm});
     Tone.Transport.start();
 
