@@ -80,7 +80,6 @@ async function main() {
     window.removeEventListener('keypress', main);
     await Tone.start();
     console.log('Tone started');
-    const synth = new Tone.Synth().toDestination();
     const sampler = new Tone.Sampler({
         urls: {
             A0: "drum-bass-hi-2.mp3",
@@ -90,10 +89,10 @@ async function main() {
         baseUrl: './samples/'
     }).toDestination();
 
-    const beatLoop = new Tone.Loop(time => {
-        window.dispatchEvent(beat);
-    }, "4n").start(0);
     const drumSequence = new Tone.Sequence((time, note) => {
+        if (note === 'A0') {
+            window.dispatchEvent(beat);
+        }
         sampler.triggerAttackRelease(note, "8n", time + threshold);
     }, ['A0', 'C0', 'A0', 'D0']).start(0);
     Tone.Transport.set({bpm: bpm});
