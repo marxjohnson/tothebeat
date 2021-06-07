@@ -6,17 +6,26 @@ let cells = document.querySelectorAll('.cell');
 let nextRoom = 0;
 messages.innerText = "Press any key to start";
 const beat = new Event('beat');
-const bpm = 126;
-const threshold = 0.05 * (bpm / 60);
+const bpm = 120;
+const threshold = 0.04 * (bpm / 60);
 let beatNow = false;
+let tooSoon = false;
+
+function setMessage(message) {
+    document.getElementById('messages').innerText = message;
+}
 
 function beatOn() {
     beatNow = true;
+    tooSoon = false;
     document.body.setAttribute('class', 'beaton');
 }
 function beatOff() {
     beatNow = false;
     document.body.setAttribute('class', 'beatoff');
+    window.setTimeout(() => {
+        tooSoon = true;
+    }, (1 / (bpm / 60) / 8) * 1000)
 }
 
 function jumpOn() {
@@ -107,6 +116,7 @@ async function main() {
     window.addEventListener('keydown', () => {
         if (beatNow) {
             console.log('Hit!');
+            setMessage('');
             moveForward().then(() => {
                 // Did we hit something?
                 if (document.querySelector('#corridor .cell:nth-child(3) .mob.safe')) {
@@ -116,13 +126,20 @@ async function main() {
                 }
                 if (document.querySelector('#corridor .cell:nth-child(3) .mob.unsafe')) {
                     console.log('Hit by a mob!');
+                    setMessage('Ouch!');
                     return moveBackward();
                 }
             })
         } else {
             console.log('Miss!');
+            if (tooSoon) {
+                setMessage('Too soon!');
+            } else {
+                setMessage('Too late!');
+            }
         }
     });
+    setMessage('');
 }
 
 cells.forEach((cell) => {
