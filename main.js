@@ -7,7 +7,7 @@ let nextRoom = 0;
 messages.innerText = "Press any key to start";
 const beat = new Event('beat');
 const bpm = 126;
-const threshold = 0.03 * (bpm / 60);
+const threshold = 0.05 * (bpm / 60);
 let beatNow = false;
 
 function beatOn() {
@@ -90,7 +90,7 @@ async function main() {
     }).toDestination();
 
     const drumSequence = new Tone.Sequence((time, note) => {
-        if (note === 'A0') {
+        if (note === 'C0' || note === 'D0') {
             window.dispatchEvent(beat);
         }
         sampler.triggerAttackRelease(note, "8n", time + threshold);
