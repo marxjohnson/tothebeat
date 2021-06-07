@@ -4,12 +4,17 @@ const corridor = document.getElementById('corridor');
 const player = document.getElementById('player');
 let cells = document.querySelectorAll('.cell');
 let nextRoom = 0;
-messages.innerText = "Press any key to start";
+const finalRoom = parseInt(Object.keys(rooms).pop());
 const beat = new Event('beat');
 const bpm = 120;
 const threshold = 0.04 * (bpm / 60);
 let beatNow = false;
 let tooSoon = false;
+let beatCounter = 0;
+let hitCounter = 0;
+let missCounter = 0;
+let damageCounter = 0;
+let complete = false;
 
 function setMessage(message) {
     document.getElementById('messages').innerText = message;
@@ -86,7 +91,7 @@ function setCellContents(cell, roomNumber) {
 }
 
 async function main() {
-    window.removeEventListener('keypress', main);
+    window.removeEventListener('keydown', main);
     await Tone.start();
     console.log('Tone started');
     const sampler = new Tone.Sampler({
@@ -109,13 +114,20 @@ async function main() {
 
     window.addEventListener('beat', () => {
         beatOn();
+        beatCounter++
         setTimeout(beatOff, (1000 * threshold * 2));
         console.log('Beat!');
     });
 
     window.addEventListener('keydown', () => {
+        if (complete) {
+            setMessage("Reload the page to play again.");
+            return;
+        }
         if (beatNow) {
             console.log('Hit!');
+            console.log(nextRoom);
+            hitCounter++;
             setMessage('');
             moveForward().then(() => {
                 // Did we hit something?
@@ -123,15 +135,33 @@ async function main() {
                     const mob = document.querySelector('#corridor .cell:nth-child(3) .mob');
                     mob.parentElement.removeChild(mob);
                     console.log('Killed a mob!');
+                    if (nextRoom > finalRoom + 8) {
+                        complete = true;
+                        Tone.Transport.stop();
+                        const beats = beatCounter;
+                        const hits = hitCounter;
+                        const misses = missCounter;
+                        const damage = damageCounter;
+                        const accuracy = hits / (hits + misses);
+                        const score = Math.round(((finalRoom * 4) - beats - damage) * accuracy);
+                        setMessage("You won! Total beats: " + beats + ". "
+                            + "Total hits: " + hits + ". "
+                            + "Total misses: " + misses + ". "
+                            + "Accuracy: " + (accuracy * 100).toPrecision(3) + "%. "
+                            + "Damage taken: " + damage + ". "
+                            + "Total score: " + score);
+                    }
                 }
                 if (document.querySelector('#corridor .cell:nth-child(3) .mob.unsafe')) {
                     console.log('Hit by a mob!');
+                    damageCounter++;
                     setMessage('Ouch!');
                     return moveBackward();
                 }
-            })
+            });
         } else {
             console.log('Miss!');
+            missCounter++;
             if (tooSoon) {
                 setMessage('Too soon!');
             } else {
@@ -139,7 +169,7 @@ async function main() {
             }
         }
     });
-    setMessage('');
+    setMessage('Move to the beat!');
 }
 
 cells.forEach((cell) => {
@@ -147,4 +177,5 @@ cells.forEach((cell) => {
     nextRoom++;
 });
 
-window.addEventListener('keypress', main);
+setMessage("Press any key to start");
+window.addEventListener('keydown', main);
