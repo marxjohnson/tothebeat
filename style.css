@@ -83,10 +83,10 @@
 }
 
 .beatoff #beatindicator {
-    fill: red;
+    fill: green;
 }
 .beaton #beatindicator {
-    fill: green;
+    fill: lightgreen;
 }
 
 #player {
@@ -122,17 +122,17 @@
 }
 
 .blueblob {
-    fill: blue;
+    fill: cornflowerblue;
     z-index: 2;
 }
 
 .yellowblob {
-    fill: yellow;
+    fill: darkorange;
     z-index: 2;
 }
 
 .purpleblob {
-    fill: purple;
+    fill: blueviolet;
     z-index: 2;
 }
 
